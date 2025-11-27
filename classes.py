@@ -1,4 +1,5 @@
 #a class is just a blueprint for code organization
+#class is used to simplify the process of crating multiple objects with similar attributes, easy for duplication of code
 class Car:  #the first letter of class name is always capital
     def __init__(self, brand:str, color:str, horsepower:int): #an initializer is used define and initialize the attributes of the class,  attributes(features) are the variables the belong to the class(car in this case)
         if horsepower <= 0:
