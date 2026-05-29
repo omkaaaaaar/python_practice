@@ -158,4 +158,45 @@ help('print')
 
 o/p xyz...
 
-## Built-in Modules
+## List Sorting
+
+1. Intro
+   Sorting is a fundamental operation in python that allows arranging elelments in a _specific order_ (ascending or descending)
+
+   - Python provides two primary ways to sort lists:
+     - **Using sort() method** -> **Modifies** the **original** list in place.
+     - **Using sorted() function** -> Returns a **new sorted list** without modifying the original one.
+
+2. Built-in sort() methods
+   The .sort()method sorts a list **in place**, meaning the **original** list is **modified** and no new list is created.
+
+```
+list_name.sort(key=None, reverse=False)
+```
+
+Explaination:
+
+- _*list_name*_ -> The list to be sorted
+- _key (optional)_ -> A function that defines the sorting criterion. Default is None (normal sorting).
+- _reverse (optional)_ -> If True, sorts in _descending order_; if False, sorts in _ascending order_(default).
+
+3. sorted() function
+   The **sorted()** function returns a new sorted list while keeping the original list unchaned.
+   To sort a list in descending order, set **reverse=True**.
+
+```
+sorted(iterable, key=None, reverse=False)
+```
+
+Explaination:
+
+- _iterable_ -> The list (or iterable) to be sorted.
+- _key (optional)_ -> Function for custom sorting.
+- _reverse (optioal)_ -> If True, sorts in descending order.
+
+4. Custom sorting
+   The **Key** parameter in **sort()** and **sorted()** allows us to define custom sorting logic
+   This function is applied to each element before sorting.
+   Ex. Sort by the length of the characters in a word, etc
+
+5. reverse() Method
