@@ -43,3 +43,21 @@ sortt = sorted(words, key=len)
 print(sortt)
 
 # Sorting based on the last character of the word
+
+def fun(n):
+    return n % 10
+numbers = [100, 51, 65, 82, 23]
+numbers.sort(key=fun)
+print("Sorted based on the last character:", numbers)
+
+
+# Case-Insensitive sorting
+lst = ["Mango", "Kiwi", "banana"]
+lst.sort(key=str.lower)
+print(lst)
+
+
+# Reverse() method
+letters = ["a", "d", "f", "b"]
+letters.reverse()
+print(letters)

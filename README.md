@@ -158,6 +158,8 @@ help('print')
 
 o/p xyz...
 
+---
+
 ## List Sorting
 
 1. Intro
@@ -200,3 +202,35 @@ Explaination:
    Ex. Sort by the length of the characters in a word, etc
 
 5. reverse() Method
+   The **.reverse()** method **flips** the order of elements but deos not sort them.
+
+---
+
+## Collection Module
+
+- This is an alternative in python for data types like list, tuples, etc (basically a replacement for list,etc)
+- This ia _Powerful_ alternative for the built in data types
+- It is more fast than data types and these modules are reliable than the data types
+  5 Subparts of the Collection Module:
+  - Namedtuple
+  - Deque
+  - Counter
+  - Defaultdict
+  - OrderedDict
+
+1. **Namedtuple**
+   It is like a normal tuple but there is a added name to the tuple, this is more cleaner than the tuple
+   Elements here can be accessed based on the names
+   Faster than regular tuples
+
+2. **Deque**
+   It is a fast and flexible list
+
+3. **Counter**
+   It is used to count the items
+
+4. **Defaultdict**
+   It is used to find the default value of the Dictionary
+
+5. **OrderedDict**
+   It is used in less than Python 3.7 version
