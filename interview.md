@@ -184,3 +184,175 @@ print(s.count("l"))  # 3
 print(s.upper())  # HELLO WORLD
 print(s.lower())  #hello world
 ```
+
+### 3. Question:
+
+```
+text = "Python AI"
+
+print(text[0:6])  #Python
+print(text[::-1])  # IA nohtyP
+print(text.split())  # ['Python', 'AI']
+print("-".join(text()))  # TypeError: 'str' objext is not callable
+print("-".join(text.split()))  # Python-AI
+```
+
+## Topic 4: List Operations
+
+### Explanation
+
+Lists are **ordered and mutable**. Common interview operations include adding (_append_), removing (_pop, remove_), sorting (_sort, sorted_), slicing, and list compreshensions. Remember that _sort()_ modifies the original list, while _sorted()_ returns a new sorted list. List object has no attribute/operation _'sorted'_ btw, we'll need to always use it with print(sorted(_lst_)) we cant use lst.sorted()
+
+### 2. Code Example
+
+```
+nums = [3, 1, 2]
+
+nums.append(4)
+print(nums)    # [3, 1, 2, 4]
+
+nums.pop()    # last element/recent added elements gets popped
+print(nums)    # [3, 1, 2]
+
+nums.remove(1)
+print(nums)    # [3, 2]
+
+print(sorted(nums))    # [2, 3]
+
+nums.sort()
+print(nums)    # [2, 3]
+
+print(nums[::-1])    # [3, 2]
+
+squares = [x*x for x in range(5)]    # this equation means, x = x times x for the range of 5 (0,1,2,3,4)
+print(squares)    # [0, 1, 4, 9, 16]
+
+```
+
+### 3. Question:
+
+```
+nums = [5, 2, 4, 2]
+
+nums.remove(2)
+print(nums)    # [5, 4, 2], the 1st 2 from the left/ SI gets removed/ first occurence of 2 gets removed
+nums.append(10)
+print(nums)    # [5, 4, 2, 10]
+
+print(nums)    # [5, 4, 2, 10]
+print(sorted(nums))    # [2, 4, 5, 10]
+print(nums[1:4])    # [4, 2, 10]
+```
+
+## Topic 5: Tuple and Set
+
+### 1. Explanation
+
+- **Tuple:** Ordered and **immutable**. Use it for fixed data that shouldn't change(e.g., employee = ("Omkar", 21, "Developer"))
+- **Set:** Unordered, **mutable**, and stores **unique** elements only.
+- Sets automatically remove duplicates and are very fast for membership checks (_in_).
+
+### 2. Code Example:
+
+```
+# Tuple
+point = (10, 20)
+print(point[0])    # 10
+
+# Set
+nums = {1, 2, 2, 3, 3, 4}
+print(nums)    # {1, 2, 3, 4} (order not guaranteed)
+
+nums.add(5)
+print(nums)    # {2, 3, 1, 4, 5}
+nums.remove(2)
+print(nums)    # {1, 3, 5, 4}
+print(3 in nums)    # True
+```
+
+### 3. Question:
+
+```
+t = (1, 2, 3)
+
+s = {1, 2, 2, 3}
+s.add(4)
+
+print(len(t))    # 3
+print(3)    # {2, 1, 4, 3}
+print(2 in s)    # True
+```
+
+## Topic 6: Dictionary
+
+### 1. Explanation
+
+A dictionary stores **key-value pairs.** Keys must be **unique and hashable** (e.g., _str, int, tuple_), while values can be any type. Dictionaries are mutable and provide **O(1)** lookup by key.
+Common interview methods:
+
+- _dict[key]_
+- _.get()_
+- _.items()_
+- _.keys()_
+- _.values()_
+- _.update()_
+- _del_
+
+### 2, Code Example;
+
+```
+student = {
+    "name": "Omkar",
+    "age": 21,
+    "marks": {
+        "python": 95,
+        "ai": 92
+    }
+}
+
+print(student["name"])    # Omkar
+print(student.get("city"))    # None
+
+student["age"] = 22
+student["city"] = "Mumbai"
+print(student.get("city"))    # Mumbai
+
+print(student.keys())    # dict_keys(['name', 'age', 'marks', 'city'])
+print(student.values())    #dict_values(['Omkar', 22, {'python': 95, 'ai': 92}, 'Mumbai'])
+print(student.items)    #dict_items([('name', 'Omkar'), ('age', 22), ('marks', {'python': 95, 'ai': 92}), ('city', 'Mumbai')])
+
+print(student["marks"]["python"])    # 95
+
+del student["city"]
+print(student)
+```
+
+### 3. Check Question
+
+```
+person = {
+    "name": "Alice",
+    "age": 25
+}
+
+print(person.get("city"))    # None
+person["age"] = 26
+person["country"] = "India"
+
+print(person["age"])    # 26
+print(person.keys())    # dict_keys(['name', 'age', 'country'])
+print(person.values())    # dict_values(['Alice', 26, 'India'])
+```
+
+**Interview Tips**
+_dict[key]_ vs _.get()_
+
+d = {"a": 1}
+print(d["a"]) # 1
+print(d.get("a")) # 1
+
+Missing key:
+print(d["b"]) # keyError ❌
+print(d.get("b")) # None
+
+So use _.get()_ when a key may not exist.
