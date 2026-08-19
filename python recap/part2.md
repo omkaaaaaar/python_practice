@@ -289,3 +289,40 @@ is O(1) average
 Compare:
 _numbers = [10, 20, 30, 40]_
 _20 in numbers_
+Which is **O(n)**
+
+**This is an extremely useful pattern**
+Suppose:
+_blocked_users = [101, 205, 309, 450, ...]_
+and you're repeatedly checking:
+_if user_id in blocked_users:_
+If there are many IDs, converting to:
+_blocked_users = {101, 205, 309, 450}_
+can make membership checks much
+
+## 2.10 Tuple Complexity
+
+Tuples are similar to lists for many operators
+_point = (10, 20, 30)_
+_point[1]_
+is O(1)
+
+But tuples are immutable
+Why might this be useful?
+If we have a fixed value:
+_coordinates = (19.0760, 72.8777)_
+we don't want random code accidentally changing the coordinates
+
+## 2.11 The Data Structure Cheat Seat
+
+```
+| Operation         |           List | Tuple |      Set |            Dict |
+| ----------------- | -------------: | ----: | -------: | --------------: |
+| Index access      |           O(1) |  O(1) |        ❌ |               ❌ |
+| Search/membership |           O(n) |  O(n) | O(1) avg |        O(1) avg |
+| Append            | O(1) amortized |     ❌ | O(1) avg | O(1) avg insert |
+| Insert beginning  |           O(n) |     ❌ |      N/A |             N/A |
+| Delete            | O(n) generally |     ❌ | O(1) avg |        O(1) avg |
+| Mutable           |              ✅ |     ❌ |        ✅ |               ✅ |
+| Duplicates        |              ✅ |     ✅ |        ❌ |          Keys ❌ |
+```
