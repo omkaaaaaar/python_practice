@@ -334,3 +334,70 @@ _DatabaseError_
 or:
 _AuthenticationError_
 rather than treating every problem as a generic _Exception_
+
+## Part 4 Quiz
+
+Q1 - Decorators
+What does a Python decorator do?
+and what is the relationship between:
+
+```
+@logger
+def greet():
+    ...
+and
+greet = logger(greet)
+```
+
+-> A decorator is used to wrap extra info around the function without disturbing the code, the relation in the snipper is that the logger -> decorator is built and then the greet function is defined and then when we call the greet function it also executes the decorators
+
+Q2 - Generators
+What's the difference between:
+
+```
+def get_numbers():
+    return [1, 2, 3, 4, 5]
+
+and:
+
+def get_numbers():
+    for i in range(1, 6):
+        yield i
+```
+
+Why might the second approach be better when processing millions of records
+-> in the second approach the generator is used, so the it processes one at a time, and while processing millions of record we should opt for the second approach so that the process doesn't consume a large amount of memory
+
+Q3 - Exception handling
+What is the difference between:
+try
+except
+else
+finally
+Explain when each block runs
+the try is used to try the expectation
+except is use to expect expections
+else is used to go after the other exception if the previous one fails
+and finally is used when all the exception fails
+
+"try contains code that may raise an exception. except handles a matching exception. else executes only if the try block succeeds without an exception. finally executes regardless of whether an exception occurred, so it's commonly used for cleanup."
+
+Q4 - Code
+Write a function:
+_withdraw(balance, amount)_
+that:
+
+- raises a custom _InsufficientFundsError_ if _amount > balance_
+- otherwise returns the remaining balance
+  Try writing custom exception as well
+
+```
+class InsufficientFundsError(Exception)
+    pass
+
+def withdraw(amount, balance):
+    if amount > balance:
+        raise InsufficientFundsError("Not enough balance")
+
+    return balance - amount
+```

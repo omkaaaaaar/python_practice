@@ -20,3 +20,13 @@ def get_numbers():
 
 for i in get_numbers():
     print(i)
+
+class InsufficientFundsError(Exception):
+    pass
+
+def withdraw(amount, balance):
+    if amount > balance:
+        raise InsufficientFundsError("Not enough balance")
+
+    return balance
+
