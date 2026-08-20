@@ -266,9 +266,14 @@ Shortcut:
 
 q1 What's the difference between"
 _self_ and _cls_ in python methods
-self is used for instance methods, it is used to call/refer to a specific particular object, if I defined a function "greet" and used self. The self in the greet function will refer to the greet, it will call itself
+self is used for instance methods, it is used to call/refer to a specific particular object, if I defined a function "greet" and used self. "The self in the greet function will refer to the greet, it will call itself" -> ❌
+"self refers to the instance/object on which the method was called, not the method itself."✅
 cls stands for class method the class method receives whole the class(the blurprint) itself as its first argument
 the self calls the object and the cls calls the whole class
+
+"self refers to the current instance and is used by instance methods to access that object's attributes and methods. cls refers to the class itself and is used by class methods to access class-level state or behavior."
+"self refers to the current instance."
+**init** initializes the object's name attribute, and greet() accesses that attribute through self.name.
 
 q2. Predict the output
 
@@ -319,3 +324,11 @@ instance method vs class method vs static method
 instance method uses self, when self is called it refers to the object
 the class method uses cls as a abbreviation for class, when it is called, it brings down the whole class as it's first argument
 the static method doesn't use a self or anything it is used when the behavior logically refers to the class but doesn't requires any instance or a class state
+"An instance method receives self and operates on a particular object's state. A class method receives cls and operates on class-level state or provides alternative constructors. A static method doesn't receive either self or cls; it's essentially a utility function grouped inside the class because it is logically related to that class."
+
+Part 3 — Key Takeaways
+A class is a blueprint; an object is an instance of that class.
+self refers to the current instance; cls refers to the class.
+@classmethod receives cls; @staticmethod receives neither self nor cls.
+super() allows a subclass to access parent-class functionality.
+**str** is human-friendly; **repr** is primarily developer/debugging-oriented.
