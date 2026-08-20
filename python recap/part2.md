@@ -326,3 +326,276 @@ we don't want random code accidentally changing the coordinates
 | Mutable           |              ✅ |     ❌ |        ✅ |               ✅ |
 | Duplicates        |              ✅ |     ✅ |        ❌ |          Keys ❌ |
 ```
+
+The **big three** to know are:
+List indexing -> O(1)
+List membership -> O(n)
+Dict/set membership -> O(1) average
+
+## 2.12 List Comprehensions
+
+Reducing the lines of codes for list
+
+Instead of:
+
+```
+numbers = [1, 2, 3, 4, 5]
+squares = []
+
+for number in numbers:
+    squares.append(number ** 2)
+```
+
+We can write:
+squares = [number ** 2 for number in numbers]
+
+With a condition:
+
+```
+numbers = [1, 2, 3, 4, 5, 6]
+
+even numbers = [
+    number
+    for number in numbers
+    if number % 2 == 0
+]
+```
+
+Result:
+[2, 4, 6]
+
+## 2.13 Dictionary Comprehensions
+
+We can do the same with dictionaries
+
+```
+numbers = [1, 2, 3]
+squares = [
+    number: number ** 2
+    for number in numbers
+]
+```
+
+Result:
+{
+1: 1,
+2: 4,
+3: 9
+}
+
+## 2.14 Set Comprehensions
+
+Also possible:
+
+```
+numbers = [1, 2, 2, 3, 3, 4]
+
+unique_squares = [
+    number ** 2
+    for number in numbers
+]
+```
+
+Result:
+{1, 4, 9, 16}
+
+## 2.15 Comprehensin vs Normal Loop
+
+You shouldn't use comprehensions just because they're shorter, cause the code may get complex
+
+```
+result = [
+    process_user(user)
+    for user in users
+    if user.is_active
+    if user.has_permission
+    if user.balance > 10000
+]
+```
+
+If the logic becomes complicated, a normal loop is often more readable
+Interview:
+I use comprehensions for simple transformations and filtering. If the logic becomes complex or less readable, I'd use a normal loop
+
+## 2.16 Mutability
+
+A mutable object can be modified afer creation
+_numbers = [1, 2, 3]_
+_numbers.append(4)_
+The list itself changed
+
+An immutable object cannot be modified
+_name = "Alice"_
+_name.upper()_
+This does **not** modify the original string
+
+Instead, it creates a new string
+_name = name.upper()_
+
+## 2.17 A Common Interview Trap
+
+```
+def add_item(items):
+    items.append("new")
+
+my_items = ["a", "b"]
+
+add_item(my_items)
+
+print(my_items)
+```
+
+Output:
+["a", "b", "new"]
+
+Why?
+The function recieved a reference to the same mutable list object
+
+This leads to an important Python concept:
+**Python passes object references by assignment**
+
+Better interview explanation is:
+Python passes references to objects. The function recieves a reference to the same object, so mutations to a mutable object can be visible to the caller
+
+## 2.18 Copying lists
+
+Consider:
+
+```
+a = [1, 2, 3]
+b = a
+
+b.append(4)
+print(a)
+```
+
+What is _a_?
+[1, 2, 3, 4]
+
+Because:
+**b = a**
+doesn't create a new list
+Both names refer to the same object
+
+### Shallow copy
+
+```
+a = [1, 2, 3]
+b = a.copy()
+
+b.append(4)
+
+print(a)
+print(b)
+```
+
+Now:
+[1, 2, 3]
+[1, 2, 3, 4]
+
+## 2.19 Choosing the Right Data Structure
+
+**Requirement 1**
+You need transactions in chronological order
+Use:
+_list_
+because order matters and you may append transactions
+
+**Requirement 2**
+You need unique stock symbols
+Use:
+_set_
+_symbols = {"AAPL", "GOOG", "MSFT"}_
+
+**Requirement 3**
+You need:
+Stock symbol --(to store)-> current price
+Use:
+_dict_
+
+```
+prices = {
+    "AAPL": Decimal("225.40"),
+    "GOOG": Decimal("510.20")
+}
+```
+
+**Requirement 4**
+you need to store immutable coordinates
+_location = (19.0760, 72.87777)_
+A tuple makes sense.
+
+## 2.20
+
+Suppose FastAPI recieves JSON like:
+
+```
+{
+    "symbol": "AAPL",
+    "quantity": 10,
+    "price": 225.40
+}
+At the Python level, this conceptually corresponds to a mapping:
+{
+    "symbol": "AAPL",
+    "quantity": 10,
+    "price": 225.40
+}
+```
+
+FastAPI/Pydantic will later give us much better structured representation than manually manipulating dictionaries
+
+# Part 2 Quiz
+
+Q1 - Conceptual
+You have 1 million user IDs and repeatedly need to check:
+_if user_id in collection_
+would you use a _list_ or _set_?
+I would use a set cause the the IDs will be unique and since it will be unique the time complexity will be O(1), while if I had used list over here the time complexity would've been O(n) which would not have been great
+
+"I'd use a set because I repeatedly need membership checks. Set membership is O(1) on average due to hashing, while list membership is O(n), so a set scales much better for a large collection"
+
+Q2 - Predict the output
+
+```
+def add_item(items):
+    items.append("Python")
+
+languages = ["Java", "C++"]
+
+add_item(languages)
+print(languages)
+```
+
+What is the output, and why does the function change the original list
+["Java", "C++", "Python"] The original lists gets modified cause the python gets appends in the items and the languages cause the languages are first called then the objects/values/data in the add_item is passed into languages
+
+Q3 = write code
+Given:
+_numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]_
+Create a new list containing only the squares of even numbers
+Expected result:
+_[4, 16, 36, 64, 100]_
+Use a list comprehension
+
+```
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+squares = [
+    number ** 2
+    for number in numbers
+    if number % 2 == 0
+]
+print(squares)
+```
+
+Q4 - Data structure selection
+You're building a portfolio backend and need:
+_stock symbol -> current price_
+For example:
+AAPL → 225.40
+MSFT → 510.20
+GOOG → 202.10
+Which python data structure would you use and why?
+Also: for the prices themselves, would you prefer _Float_ or _Decimal_ in a financial system?
+I would use **dict** because it will store it as a key value pair and I will use decimal so that the decimal precision error doesn't occue
