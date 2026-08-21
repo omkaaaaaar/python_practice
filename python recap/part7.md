@@ -351,8 +351,8 @@ from decimal import Decimal
 
 class PortfolioCreate(BaseModel):
     name: str
-    initial_balance: Decimal
-    risk_score: int = Fied(ge=1, le=10)
+    initial_balance: Decimal = Field(gt=0)
+    risk_score: int = Field(ge=1, le=10)
 ```
 
 Q3 - FastAPI endpoint
@@ -391,3 +391,13 @@ def get_portfolio(portfolio_id: int):
 
 Q4 - Why is Pydantic useful in FastAPI
 Pydantic is useful for performing request body validation and it is also used to send expected output in the response too, it is also used create a Pydantic model which is used to ceate a Schema -> expected data from the user, if it the expected input doesn't match the pydantic model it simply doesn't validate it and considers it invalid
+
+"Pydantic allows FastAPI to define and validate the structure and types of incoming and outgoing data. It parses request data into typed Python objects, validates constraints such as required fields and numeric ranges, and can also define response schemas. These models are additionally used by FastAPI to generate accurate OpenAPI documentation."
+
+# Part 7 — Key Takeaways
+
+Path parameters identify specific resources; query parameters are commonly used for filtering, searching, pagination and optional behavior.
+Pydantic models define the expected structure and validation rules for API data.
+FastAPI uses Python type hints + Pydantic to validate input and generate OpenAPI documentation.
+HTTPException should be used for expected HTTP errors such as 404, rather than allowing them to become 500 errors.
+FastAPI's route decorators connect HTTP methods/paths to Python endpoint functions.
