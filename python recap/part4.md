@@ -382,6 +382,19 @@ and finally is used when all the exception fails
 
 "try contains code that may raise an exception. except handles a matching exception. else executes only if the try block succeeds without an exception. finally executes regardless of whether an exception occurred, so it's commonly used for cleanup."
 
+```
+             try
+              |
+       exception occurred?
+          /          \
+        YES           NO
+         |             |
+      except          else
+         \             /
+          \           /
+           finally
+```
+
 Q4 - Code
 Write a function:
 _withdraw(balance, amount)_
